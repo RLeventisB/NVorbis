@@ -86,12 +86,12 @@ namespace NVorbis
 
         float[] SynthesizeWDelMap(int n)
         {
-            var wdel = (float)(Math.PI / _bark_map_size);
+            var wdel = Utils.PI / _bark_map_size;
 
             var map = new float[n];
             for (int i = 0; i < n; i++)
             {
-                map[i] = 2f * (float)Math.Cos(wdel * i);
+                map[i] = 2f * MathF.Cos(wdel * i);
             }
             return map;
         }

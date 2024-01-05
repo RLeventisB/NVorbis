@@ -87,10 +87,7 @@ namespace NVorbis.Ogg
                     _packetIndex = 0;
                     return granulePos;
                 }
-                else
-                {
-                    packetIndex = FindPacket(pageIndex, ref granulePos, getPacketGranuleCount);
-                }
+                packetIndex = FindPacket(pageIndex, ref granulePos, getPacketGranuleCount);
                 packetIndex -= preRoll;
             }
 

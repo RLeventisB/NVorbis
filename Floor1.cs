@@ -307,10 +307,7 @@ namespace NVorbis
             {
                 return y0 - off;
             }
-            else
-            {
-                return y0 + off;
-            }
+            return y0 + off;
         }
 
         static void RenderLineMulti(int x0, int y0, int x1, int y1, float[] v)

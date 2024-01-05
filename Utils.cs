@@ -1,10 +1,11 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 
 namespace NVorbis
 {
-    static class Utils
+    public static class Utils
     {
+        public const float PI = 3.141592653589793f;
+        public const float PIOver2 = 3.141592653589793f / 2f;
         static internal int Ilog(int x)
         {
             int cnt = 0;
@@ -29,7 +30,9 @@ namespace NVorbis
         }
         static internal float ClipValue(float value)
         {
-            return MathHelper.Clamp(value, -0.99999994f, 0.99999994f);
+            if (value < -0.99999994f) return -0.99999994f;
+            if (value > 0.99999994f) return 0.99999994f;
+            return value;
         }
         static internal float ConvertFromVorbisFloat32(uint bits)
         {

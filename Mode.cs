@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using NVorbis.Ogg;
 
 namespace NVorbis
@@ -68,9 +67,9 @@ namespace NVorbis
 
                 for (int i = 0; i < left; i++)
                 {
-                    var x = (float)Math.Sin((i + .5) / left * MathHelper.PiOver2);
+                    var x = (float)Math.Sin((i + .5) / left * Utils.PIOver2);
                     x *= x;
-                    array[leftbegin + i] = (float)Math.Sin(x * MathHelper.PiOver2);
+                    array[leftbegin + i] = (float)Math.Sin(x * Utils.PIOver2);
                 }
 
                 for (int i = leftbegin + left; i < rightbegin; i++)
@@ -80,9 +79,9 @@ namespace NVorbis
 
                 for (int i = 0; i < right; i++)
                 {
-                    var x = (float)Math.Sin((right - i - .5) / right * MathHelper.PiOver2);
+                    var x = (float)Math.Sin((right - i - .5) / right * Utils.PIOver2);
                     x *= x;
-                    array[rightbegin + i] = (float)Math.Sin(x * MathHelper.PiOver2);
+                    array[rightbegin + i] = (float)Math.Sin(x * Utils.PIOver2);
                 }
             }
         }

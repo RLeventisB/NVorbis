@@ -164,10 +164,7 @@ namespace NVorbis
         public TimeSpan TimePosition
         {
             get => _streamDecoder.TimePosition;
-            set
-            {
-                _streamDecoder.TimePosition = value;
-            }
+            set => _streamDecoder.TimePosition = value;
         }
 
         /// <summary>
@@ -176,10 +173,7 @@ namespace NVorbis
         public long SamplePosition
         {
             get => _streamDecoder.SamplePosition;
-            set
-            {
-                _streamDecoder.SamplePosition = value;
-            }
+            set => _streamDecoder.SamplePosition = value;
         }
 
         /// <summary>
@@ -252,7 +246,31 @@ namespace NVorbis
         public int ReadSamples(float[] buffer, int offset, int count)
         {
             // don't allow non-aligned reads (always on a full sample boundary!)
-            count -= count % _streamDecoder.Channels;
+            if (_streamDecoder.Channels == 2)
+            {
+                count >>= 1;
+                count <<= 1;
+            }
+            return _streamDecoder.Read(buffer, offset, count);
+        }
+        
+        /// <summary>
+        /// Reads samples into the specified buffer.
+        /// </summary>
+        /// <param name="buffer">The span to read the samples into.</param>
+        /// <param name="offset">The index to start reading samples into the buffer.</param>
+        /// <param name="count">The number of samples that should be read into the buffer.</param>
+        /// <returns>The number of floats read into the buffer.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the buffer is too small or <paramref name="offset"/> is less than zero.</exception>
+        /// <remarks>The data populated into <paramref name="buffer"/> is interleaved by channel in normal PCM fashion: Left, Right, Left, Right, Left, Right</remarks>
+        public int ReadSamples(Span<float> buffer, int offset, int count)
+        {
+            // don't allow non-aligned reads (always on a full sample boundary!)
+            if (_streamDecoder.Channels == 2)
+            {
+                count >>= 1;
+                count <<= 1;
+            }
             return _streamDecoder.Read(buffer, offset, count);
         }
 

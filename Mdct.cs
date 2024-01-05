@@ -37,17 +37,17 @@ namespace NVorbis
 
                 for (k = k2 = 0; k < _n4; ++k, k2 += 2)
                 {
-                    (float sin, float cos) = MathF.SinCos(4 * k * MathF.PI / n);
+                    (float sin, float cos) = MathF.SinCos(4 * k * Utils.PI / n);
                     _a[k2] = cos;
                     _a[k2 + 1] = -sin;
 
-                    (sin, cos) = MathF.SinCos((k2 + 1) * MathF.PI / n / 2);
+                    (sin, cos) = MathF.SinCos((k2 + 1) * Utils.PI / n / 2);
                     _b[k2] = cos / 2;
                     _b[k2 + 1] = sin / 2;
                 }
                 for (k = k2 = 0; k < _n8; ++k, k2 += 2)
                 {
-                    (float sin, float cos) = MathF.SinCos(2 * (k2 + 1) * MathF.PI / n);
+                    (float sin, float cos) = MathF.SinCos(2 * (k2 + 1) * Utils.PI / n);
                     _c[k2] = cos;
                     _c[k2 + 1] = -sin;
                 }

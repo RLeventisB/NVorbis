@@ -218,7 +218,7 @@ namespace NVorbis.Ogg
                             cnt = 0;
                             break;
                         }
-                        else if (pageBuf != null)
+                        if (pageBuf != null)
                         {
                             EnqueueData(pageBuf, bytesRead);
                         }
